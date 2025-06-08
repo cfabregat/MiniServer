@@ -24,9 +24,20 @@ código de error 404 y un documento personalizado indicando el error.
 Para probarlo:
     http://127.0.0.1:8080
 
-
+Para realizar pruebas
+    curl -X GET http://localhost:8080/
+    curl -X GET http://localhost:8080/index.html
+    curl -X GET http://localhost:8080/cualquiercosa.html
+    curl -X GET http://localhost:8080/param/test?debug=true
+    curl -X POST http://localhost:8080/api/test?debug=true -d "nombre=Brenda&rol=dev"
+    
 Herramientas:
     Visual Studio 2022
 
 Investigación
     https://chatgpt.com/share/6830e5e3-c66c-800e-aa49-f93ffcb5f0ed
+
+---
+
+Creo que falta:
+8. TODO
