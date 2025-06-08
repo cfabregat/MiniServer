@@ -1,6 +1,8 @@
-"# miniwebserver" 
+<h1>
+"# MiniServer" 
+</h1>
 
-Grupo Nº
+Grupo Nº 
 
 Integrantes:
     Brenda LOPEZ (brendakeilalopez@gmail.com)

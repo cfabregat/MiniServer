@@ -48,6 +48,8 @@ class HttpServer
         using StreamReader reader = new StreamReader(stream);
         using StreamWriter writer = new StreamWriter(stream) { AutoFlush = true };
 
+        Console.WriteLine("Cliente conectado");
+
         var request = HttpRequest.Parse(reader);
         Logger.LogRequest(request, ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
 
@@ -62,5 +64,7 @@ class HttpServer
         }
 
         writer.Write(HttpResponse.Ok(File.ReadAllText(filePath)));
+        writer.Flush();
+        client.Close();
     }
 }

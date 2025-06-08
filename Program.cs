@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-//Console.WriteLine("Hello, World!");
+﻿// MiniServer 1.1
 
 static class Program
 {
