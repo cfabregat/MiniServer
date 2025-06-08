@@ -43,10 +43,8 @@ static class HttpResponse
         sb.AppendLine("Connection: close");
         sb.AppendLine();
 
-        // Convert bytes to string for text-based HTTP response
         if (isCompressed)
         {
-            // For compressed content, encode to Base64 to safely include in string response
             sb.Append(Convert.ToBase64String(contentBytes));
         }
         else
