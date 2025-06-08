@@ -26,7 +26,7 @@ Para probarlo:
 
 
 Herramientas:
-    Visual Studio XXXX
+    Visual Studio 2022
 
 Investigación
     https://chatgpt.com/share/6830e5e3-c66c-800e-aa49-f93ffcb5f0ed
