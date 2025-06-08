@@ -58,9 +58,14 @@ class HttpServer
         {
             filePath = Path.Combine(root, "404.html");
             writer.Write(HttpResponse.NotFound(File.ReadAllText(filePath)));
+            writer.Flush();
+            client.Close();
             return;
         }
 
         writer.Write(HttpResponse.Ok(File.ReadAllText(filePath)));
+        writer.Flush();
+        client.Close();
+
     }
 }
