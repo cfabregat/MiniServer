@@ -48,7 +48,7 @@
         </section>
         <section>
             <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">Notas</h2>
-            <p class="mb-2 text-gray-700 text-red-500 font-semibold">Falta implementar: Requisito 8 - Compresión de archivos.</p>
+            <p class="mb-2 text-gray-700 text-red-500 font-semibold">Todo probado.</p>
         </section>
     </div>
 </body>
