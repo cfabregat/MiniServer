@@ -12,6 +12,12 @@ static class HttpResponse
         return BuildResponse(404, "Not Found", content);
     }
 
+    public static string BadRequest(string content)
+    {
+        return BuildResponse(400, "Bad Request", content);
+    }
+
+
     private static string BuildResponse(int statusCode, string statusText, string content)
     {
         var sb = new StringBuilder();

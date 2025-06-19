@@ -9,13 +9,22 @@ class HttpRequest
     public Dictionary<string, string> Headers { get; } = new();
     public string Body { get; set; } = string.Empty;
 
-    public static HttpRequest Parse(StreamReader reader)
+    public static HttpRequest? Parse(StreamReader reader)
     {
         var request = new HttpRequest();
-        string requestLine = reader.ReadLine();
-        if (string.IsNullOrEmpty(requestLine)) return null;
+        string? requestLine = reader.ReadLine();
+        if (string.IsNullOrEmpty(requestLine))
+        {
+            Console.WriteLine("Línea de solicitud vacía");
+            return null;
+        }
 
         var parts = requestLine.Split(' ');
+        if (parts.Length < 2)
+        {
+            Console.WriteLine($"Solicitud malformada: '{requestLine}'");
+            return null;
+        }
         request.Method = parts[0];
         request.Path = parts[1];
 

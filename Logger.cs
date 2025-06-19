@@ -5,8 +5,9 @@ static class Logger
 {
     public static void LogRequest(HttpRequest request, string ip)
     {
-        string fileName = $"logs/{DateTime.Now:yyyy-MM-dd}.log";
         Directory.CreateDirectory("logs");
+        string fileName = $"logs/{DateTime.Now:yyyy-MM-dd}.log";
+        
 
         string log = $"{DateTime.Now:HH:mm:ss} | IP: {ip} | {request.Method} {request.Path}";
         if (request.Path.Contains('?'))
@@ -19,5 +20,9 @@ static class Logger
         }
 
         File.AppendAllText(fileName, log + Environment.NewLine);
+    }
+    public static void Log(string msg)
+    {
+        Console.WriteLine($"[LOG {DateTime.Now:HH:mm:ss}] {msg}");
     }
 }
