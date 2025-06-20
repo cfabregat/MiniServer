@@ -17,6 +17,7 @@ static class Program
         Logger.LogRequest(request, "127.0.0.1");
         Logger.Log("Logger funcionando correctamente");
        */
+
         //inicio del server
         var server = new HttpServer();
         server.Start();
