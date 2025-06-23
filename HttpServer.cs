@@ -82,16 +82,43 @@ class HttpServer
                 return;
             }
 
-            var fileContent = File.ReadAllText(filePath);
-            var compressed = CompressWithGzip(fileContent);
-            var responseHeaders = "HTTP/1.1 200 OK\r\n" +
-                                  "Content-Encoding: gzip\r\n" +
-                                  $"Content-Length: {compressed.Length}\r\n" +
-                                  "Content-Type: text/html\r\n\r\n";
+            byte[] fileBytes = File.ReadAllBytes(filePath);
+            string extension = Path.GetExtension(filePath).ToLower();
+            string contentType = extension switch
+            {
+                ".html" => "text/html",
+                ".css" => "text/css",
+                ".js" => "application/javascript",
+                ".png" => "image/png",
+                ".jpg" => "image/jpeg",
+                ".jpeg" => "image/jpeg",
+                ".gif" => "image/gif",
+                ".svg" => "image/svg+xml",
+                _ => "application/octet-stream"
+            };
 
-            var headerBytes = Encoding.UTF8.GetBytes(responseHeaders);
+            // Comprimir solo texto, no imágenes
+            byte[] responseBody;
+            string encodingHeader = "";
+            if (contentType.StartsWith("text"))
+            {
+                responseBody = CompressWithGzip(Encoding.UTF8.GetString(fileBytes));
+                encodingHeader = "Content-Encoding: gzip\r\n";
+            }
+            else
+            {
+                responseBody = fileBytes;
+            }
+
+            string headers = $"HTTP/1.1 200 OK\r\n" +
+                             $"{encodingHeader}" +
+                             $"Content-Type: {contentType}\r\n" +
+                             $"Content-Length: {responseBody.Length}\r\n\r\n";
+
+            byte[] headerBytes = Encoding.UTF8.GetBytes(headers);
             stream.Write(headerBytes, 0, headerBytes.Length);
-            stream.Write(compressed, 0, compressed.Length);
+            stream.Write(responseBody, 0, responseBody.Length);
+
             stream.Flush();
 
 
