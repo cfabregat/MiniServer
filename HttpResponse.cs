@@ -2,6 +2,7 @@
 
 static class HttpResponse
 {
+    //metodos para construir respuestas HTTP comunes
     public static string Ok(string content)
     {
         return BuildResponse(200, "OK", content);
@@ -18,6 +19,7 @@ static class HttpResponse
     }
 
 
+    // Método para construir una respuesta HTTP genérica
     private static string BuildResponse(int statusCode, string statusText, string content)
     {
         var sb = new StringBuilder();

@@ -9,13 +9,15 @@ class HttpRequest
     public Dictionary<string, string> Headers { get; } = new();
     public string Body { get; set; } = string.Empty;
 
+    //leer socket y devolver un objeto HttpRequest
     public static HttpRequest? Parse(StreamReader reader)
     {
         var request = new HttpRequest();
+
+        // Leer la línea de solicitud 
         string? requestLine = reader.ReadLine();
         if (string.IsNullOrEmpty(requestLine))
         {
-            Console.WriteLine("Línea de solicitud vacía");
             return null;
         }
 
@@ -29,8 +31,8 @@ class HttpRequest
         request.Path = parts[1];
 
         // Leer cabeceras
-        string line;
-        while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+        string? line;
+        while ((line = reader.ReadLine()) != null && !string.IsNullOrEmpty(line))
         {
             var header = line.Split(':', 2);
             if (header.Length == 2)

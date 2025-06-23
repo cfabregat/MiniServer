@@ -10,7 +10,7 @@ using System.IO.Compression;
 class HttpServer
 {
     private int port;
-    private string root;
+    private string root = string.Empty; // Inicializar con un valor predete
 
     //Al crear un HttpServer, carga la configuración desde config.txt.
     public HttpServer()
@@ -66,7 +66,7 @@ class HttpServer
                 return;
             }
             //crea log de la peticion
-            Logger.LogRequest(request, ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
+            Logger.LogRequest(request, ((IPEndPoint)client.Client.RemoteEndPoint!).Address.ToString());
 
 
             //servir el archivo index.html si no se especifica
